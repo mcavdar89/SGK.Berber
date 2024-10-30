@@ -1,4 +1,5 @@
-﻿using Infrastructure.Model.Entities;
+﻿using Infrastructure.DAL.Abstracts;
+using Infrastructure.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.DAL.Concretes
 {
-    public class BaseRepository
+    public class BaseRepository:IBaseRepository
     {
         private DbContext _context;
         public BaseRepository(DbContext context)
