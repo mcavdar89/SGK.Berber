@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\SGK.Berber.DAL\SGK.Berber.DAL.csproj" />
+    <ProjectReference Include="..\SGK.Berber.Model\SGK.Berber.Model.csproj" />
+  </ItemGroup>
+
 </Project>

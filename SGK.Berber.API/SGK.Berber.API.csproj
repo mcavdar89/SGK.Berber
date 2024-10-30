@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="8.23.60" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SGK.Berber.BL\SGK.Berber.BL.csproj" />
     <ProjectReference Include="..\SGK.Berber.Model\SGK.Berber.Model.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using SGK.Berber.BL.Abstracts;
 using SGK.Berber.Model.Dtos;
 
 namespace SGK.Berber.API.Controllers
@@ -8,11 +10,17 @@ namespace SGK.Berber.API.Controllers
     [ApiController]
     public class RandevuController : ControllerBase
     {
-        public IActionResult Get()
+        IRandevuService _servie;
+        public RandevuController(IRandevuService service)
         {
-          
+            _servie = service;
+        }
 
-            return Ok();
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> GetAsync([FromRoute]int id)
+        {
+           var data = await _servie.GetRandevuByIdAsync(id);
+            return Ok(data);
 
 
         }
