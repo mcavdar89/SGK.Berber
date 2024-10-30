@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <Folder Include="API\" />
+    <Folder Include="BL\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SGK.Berber.Model\SGK.Berber.Model.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
   </ItemGroup>
 
 </Project>

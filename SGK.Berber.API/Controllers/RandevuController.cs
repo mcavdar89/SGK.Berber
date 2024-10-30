@@ -10,15 +10,9 @@ namespace SGK.Berber.API.Controllers
     {
         public IActionResult Get()
         {
-            CalismaSaatleriDto calismaSaatleriDto = new CalismaSaatleriDto
-            {
-                Id = 1,
-                Saat = "09:00",
-                Kontenjan = 10,
-                SeciliSayisi = 5
-            };
+          
 
-            return Ok(calismaSaatleriDto);
+            return Ok();
 
 
         }
