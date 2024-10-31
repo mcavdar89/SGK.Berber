@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using SGK.Berber.BL.Abstracts;
 using SGK.Berber.Model.Dtos;
+using SGK.Berber.Model.Entities;
 
 namespace SGK.Berber.API.Controllers
 {
@@ -17,12 +18,24 @@ namespace SGK.Berber.API.Controllers
         }
 
         [HttpGet("get/{id}")]
-        public async Task<IActionResult> GetAsync([FromRoute]int id)
+        public async Task<IActionResult> GetAsync([FromRoute] int id)
         {
-           var data = await _servie.GetRandevuByIdAsync(id);
+            var data = await _servie.GetRandevuByIdAsync(id);
             return Ok(data);
 
 
         }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> AddAsync([FromBody] Randevu randevu)
+        {
+            var result = await _servie.AddRandevuAsync(randevu);
+            return Ok(result);
+        }
+
+
+
+
+
     }
 }

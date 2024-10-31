@@ -22,6 +22,12 @@ namespace SGK.Berber.BL.Concretes
             return await _repository.GetByIdAsync<Randevu>(id);
         }
 
+        public async Task<string> AddRandevuAsync(Randevu randevu)
+        {
+             _repository.Add(randevu);
+            int count = await _repository.SaveAsync();
+            return count > 0 ? "Randevu Eklendi" : "Randevu Eklenemedi";
+        }
 
 
     }

@@ -10,5 +10,6 @@ namespace SGK.Berber.BL.Abstracts
     public interface IRandevuService
     {
         Task<Randevu> GetRandevuByIdAsync(int id);
+        Task<string> AddRandevuAsync(Randevu randevu);
     }
 }
