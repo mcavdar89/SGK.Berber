@@ -26,6 +26,18 @@ namespace SGK.Berber.API.Controllers
 
         }
 
+        //a == b ? c:d;
+        // a ?? b??c??d....
+
+        [HttpGet("list/{calismaSaatId?}")]
+        public async Task<IActionResult> ListAsync([FromRoute] int? calismaSaatId = null)
+        {
+            var data = await _servie.ListAsync(calismaSaatId);
+            return Ok(data);
+
+
+        }
+
         [HttpPost("add")]
         public async Task<IActionResult> AddAsync([FromBody] Randevu randevu)
         {

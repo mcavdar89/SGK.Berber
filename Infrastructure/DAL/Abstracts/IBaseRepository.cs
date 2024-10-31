@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,10 @@ namespace Infrastructure.DAL.Abstracts
         #region Select
 
         Task<T> GetByIdAsync<T>(int id) where T : BaseEntity, new();
+        Task<List<T>> ListAsync<T>(
+            Expression<Func<T, bool>>? filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null
+            ) where T : BaseEntity, new();
 
         #endregion
     }

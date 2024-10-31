@@ -11,5 +11,7 @@ namespace SGK.Berber.BL.Abstracts
     {
         Task<Randevu> GetRandevuByIdAsync(int id);
         Task<string> AddRandevuAsync(Randevu randevu);
+
+        Task<List<Randevu>> ListAsync(int? calismaSaatId = null);
     }
 }
