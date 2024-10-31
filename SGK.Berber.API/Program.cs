@@ -55,7 +55,9 @@ builder.Services.AddDbContext<BerberDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("BerberConnectionString"));
 });
 builder.Services.AddScoped<IBerberRepository, BerberRepository>();
+
 builder.Services.AddScoped<IRandevuService, RandevuService>();
+builder.Services.AddScoped<ICalismaSaatleriService, CalismaSaatleriService>();
 
 
 //builder.Services.AddTransient<IBaseRepository, BaseRepository>();

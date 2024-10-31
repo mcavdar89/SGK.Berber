@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SGK.Berber.Model.Entities
 {
-    public class Randevu:BaseEntity
+    public class Randevu : BaseEntity
     {
         public int Id { get; set; }
         public int StatusId { get; set; }
@@ -15,5 +15,8 @@ namespace SGK.Berber.Model.Entities
         public int PersonelId { get; set; }
         public int CalismaSaatId { get; set; }
         public DateTime Tarih { get; set; }
+
+        public virtual Personel Personel {get;set;}
+        public virtual CalismaSaatleri CalismaSaatleri {get;set; }
     }
 }
