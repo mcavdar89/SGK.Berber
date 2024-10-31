@@ -1,4 +1,5 @@
-﻿using Infrastructure.DAL.Abstracts;
+﻿using AutoMapper;
+using Infrastructure.DAL.Abstracts;
 using Infrastructure.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,9 +14,11 @@ namespace Infrastructure.DAL.Concretes
     public class BaseRepository : IBaseRepository
     {
         private DbContext _context;
-        public BaseRepository(DbContext context)
+        private IMapper _mapper;
+        public BaseRepository(DbContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         #region Add,Update,Delete,Save
@@ -65,7 +68,24 @@ namespace Infrastructure.DAL.Concretes
             return await dbSet.ToListAsync();
 
         }
+        public async Task<List<TDto>> ListProjectAsync<TEntity,TDto>(
+            Expression<Func<TEntity, bool>>? filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null
+            ) where TEntity : BaseEntity, new()
+        {
+            IQueryable<TEntity> dbSet = _context.Set<TEntity>();
 
+            if (filter != null)
+            {
+                dbSet = dbSet.Where(filter);
+            }
+            if (orderBy != null)
+            {
+                dbSet = orderBy(dbSet);
+            }
+           return await _mapper.ProjectTo<TDto>(dbSet).ToListAsync();
+
+        }
 
 
         #endregion

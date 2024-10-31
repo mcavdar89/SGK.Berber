@@ -7,6 +7,7 @@ using SGK.Berber.BL.Concretes;
 using SGK.Berber.DAL.Abstracts;
 using SGK.Berber.DAL.Concretes;
 using SGK.Berber.DAL.Contexts;
+using SGK.Berber.Model.Profiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,7 @@ builder.Services.AddScoped<IBerberRepository, BerberRepository>();
 builder.Services.AddScoped<IRandevuService, RandevuService>();
 builder.Services.AddScoped<ICalismaSaatleriService, CalismaSaatleriService>();
 
+builder.Services.AddAutoMapper(typeof(BerberProfile));
 
 //builder.Services.AddTransient<IBaseRepository, BaseRepository>();
 //builder.Services.AddScoped<IBaseRepository, BaseRepository>();

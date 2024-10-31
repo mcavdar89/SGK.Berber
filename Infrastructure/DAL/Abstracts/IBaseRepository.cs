@@ -27,6 +27,11 @@ namespace Infrastructure.DAL.Abstracts
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null
             ) where T : BaseEntity, new();
 
+        Task<List<TDto>> ListProjectAsync<TEntity, TDto>(
+            Expression<Func<TEntity, bool>>? filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null
+            ) where TEntity : BaseEntity, new();
+
         #endregion
     }
 }
