@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\SGK.Berber.DAL\SGK.Berber.DAL.csproj" />
     <ProjectReference Include="..\SGK.Berber.Model\SGK.Berber.Model.csproj" />
