@@ -24,12 +24,20 @@ namespace SGK.Berber.Model.Profiles
 
 
             CreateMap<Personel,PersonelDto>()
-              .ForMember(des => des.RendevuSayisi,src=>src.MapFrom(c=>c.Randevu.Count()))
+              .ForMember(des => des.RendevuSayisi,src=>src.MapFrom(c=>c.Randevu.Where(d=>d.Tarih>=this.GetBuAy()).Count()))
 
 
                 ;
 
 
         }
+
+
+        private DateTime GetBuAy()
+        {
+            return new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        }
+
+
     }
 }
