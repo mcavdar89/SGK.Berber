@@ -13,7 +13,7 @@ namespace SGK.Berber.Model.Entities
         public int Id { get; set; }
         public int StatusId { get; set; }
 
-        public int? PersonelId { get; set; }
+        public int? PERSONELID { get; set; }
         public int CalismaSaatId { get; set; }
         public DateTime Tarih { get; set; }
 
