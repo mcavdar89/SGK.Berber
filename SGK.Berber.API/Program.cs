@@ -58,6 +58,7 @@ builder.Services.AddDbContext<BerberDbContext>(options =>
 builder.Services.AddScoped<IBerberRepository, BerberRepository>();
 
 builder.Services.AddScoped<IRandevuService, RandevuService>();
+builder.Services.AddScoped<IPersonelService, PersonelService>();
 builder.Services.AddScoped<ICalismaSaatleriService, CalismaSaatleriService>();
 
 builder.Services.AddAutoMapper(typeof(BerberProfile));
