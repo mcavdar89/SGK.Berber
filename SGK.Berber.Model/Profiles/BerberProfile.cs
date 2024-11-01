@@ -18,6 +18,10 @@ namespace SGK.Berber.Model.Profiles
               .ForMember(des => des.PersonelSoyad, src=>src.MapFrom(c=>c.Personel.Soyad))
               .ForMember(des => des.Saat, src=>src.MapFrom(c=>c.CalismaSaatleri.Saat))
                 ;
+
+            CreateMap<RandevuDto, Randevu>();
+
+
         }
     }
 }

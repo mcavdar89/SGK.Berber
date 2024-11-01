@@ -1,5 +1,7 @@
-﻿using SGK.Berber.BL.Abstracts;
+﻿using AutoMapper;
+using SGK.Berber.BL.Abstracts;
 using SGK.Berber.DAL.Abstracts;
+using SGK.Berber.Model.Dtos;
 using SGK.Berber.Model.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,32 +14,35 @@ namespace SGK.Berber.BL.Concretes
     public class RandevuService : IRandevuService
     {
         private IBerberRepository _repository;
-        public RandevuService(IBerberRepository repository)
+        private IMapper _mapper;
+        public RandevuService(IBerberRepository repository,IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<Randevu> GetRandevuByIdAsync(int id)
         {
             return await _repository.GetByIdAsync<Randevu>(id);
-        }     
+        }
 
 
-        public async Task<string> AddRandevuAsync(Randevu randevu)
+        public async Task<string> AddRandevuAsync(RandevuDto data)
         {
-            _repository.Add(randevu);
+            var entity = _mapper.Map<Randevu>(data);
+            _repository.Add(entity);
             int count = await _repository.SaveAsync();
             return count > 0 ? "Randevu Eklendi" : "Randevu Eklenemedi";
         }
 
-        public async Task<List<Randevu>> ListAsync(int? calismaSaatId = null)
+        public async Task<List<RandevuDto>> ListAsync(int? calismaSaatId = null)
         {
-            if(calismaSaatId == null)
+            if (calismaSaatId == null)
             {
-                return await _repository.ListAsync<Randevu>();
+                return await _repository.ListProjectAsync<Randevu, RandevuDto>();
             }
 
-            return await _repository.ListAsync<Randevu>(d=>d.CalismaSaatId == calismaSaatId);
+            return await _repository.ListProjectAsync<Randevu, RandevuDto>(d => d.CalismaSaatId == calismaSaatId);
         }
     }
 }

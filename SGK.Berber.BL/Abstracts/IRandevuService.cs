@@ -1,4 +1,5 @@
-﻿using SGK.Berber.Model.Entities;
+﻿using SGK.Berber.Model.Dtos;
+using SGK.Berber.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace SGK.Berber.BL.Abstracts
     public interface IRandevuService
     {
         Task<Randevu> GetRandevuByIdAsync(int id);
-        Task<string> AddRandevuAsync(Randevu randevu);
+        Task<string> AddRandevuAsync(RandevuDto data);
 
-        Task<List<Randevu>> ListAsync(int? calismaSaatId = null);
+        Task<List<RandevuDto>> ListAsync(int? calismaSaatId = null);
     }
 }

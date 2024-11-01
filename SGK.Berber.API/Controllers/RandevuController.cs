@@ -39,7 +39,7 @@ namespace SGK.Berber.API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddAsync([FromBody] Randevu randevu)
+        public async Task<IActionResult> AddAsync([FromBody] RandevuDto randevu)
         {
             var result = await _servie.AddRandevuAsync(randevu);
             return Ok(result);
