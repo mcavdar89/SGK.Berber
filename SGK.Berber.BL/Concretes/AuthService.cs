@@ -71,7 +71,15 @@ namespace SGK.Berber.BL.Concretes
             claims.Add(new Claim("username", user.UserName));
             claims.Add(new Claim("ad", user.Ad));
             claims.Add(new Claim("soyad", user.Soyad));
-            claims.Add(new Claim(ClaimTypes.Role, user.Role));
+
+            foreach (var item in user.Role.Split(","))
+            {
+                claims.Add(new Claim(ClaimTypes.Role, item));
+            }
+
+
+
+           
 
 
 

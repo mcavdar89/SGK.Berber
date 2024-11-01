@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SGK.Berber.BL.Abstracts;
 
@@ -6,6 +7,7 @@ namespace SGK.Berber.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="admin")]
     public class PersonelController : ControllerBase
     {
         IPersonelService _service;
@@ -13,7 +15,7 @@ namespace SGK.Berber.API.Controllers
         {
             _service = service;
         }
-
+        
         [HttpGet("list")]
         public async Task<IActionResult> ListAsync()
         {
