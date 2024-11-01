@@ -1,6 +1,8 @@
 ﻿using Infrastructure.DAL.Abstracts;
 using Infrastructure.DAL.Concretes;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SGK.Berber.BL.Abstracts;
 using SGK.Berber.BL.Concretes;
@@ -8,6 +10,7 @@ using SGK.Berber.DAL.Abstracts;
 using SGK.Berber.DAL.Concretes;
 using SGK.Berber.DAL.Contexts;
 using SGK.Berber.Model.Profiles;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +52,22 @@ builder.Services.AddSwaggerGen(swagger =>
                 });
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecurityKey"]))
+        };
+    });
+
+
+
+
 #region Depend
 
 builder.Services.AddDbContext<BerberDbContext>(options =>
@@ -80,6 +99,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapDefaultControllerRoute();
 

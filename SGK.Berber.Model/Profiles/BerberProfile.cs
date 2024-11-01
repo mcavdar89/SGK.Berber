@@ -27,6 +27,11 @@ namespace SGK.Berber.Model.Profiles
               .ForMember(des => des.RendevuSayisi,src=>src.MapFrom(c=>c.Randevu.Where(d=>d.Tarih>=this.GetBuAy()).Count()))
                 ;
 
+
+            CreateMap<UserDto, Kullanici>();
+            CreateMap<Kullanici, UserDto>();
+
+
         }
 
 

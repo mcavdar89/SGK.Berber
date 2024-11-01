@@ -48,6 +48,36 @@ namespace Infrastructure.DAL.Concretes
         {
             return await _context.Set<T>().FindAsync(id);
         }
+        public async Task<T> GetAsync<T>(
+           Expression<Func<T, bool>>? filter = null          
+           ) where T : BaseEntity, new()
+        {
+            IQueryable<T> dbSet = _context.Set<T>();
+
+            if (filter != null)
+            {
+                dbSet = dbSet.Where(filter);
+            }
+
+            return await dbSet.FirstOrDefaultAsync();
+
+        }
+
+        public async Task<TDto> GetProjectAsync<TEntity, TDto>(
+          Expression<Func<TEntity, bool>>? filter = null
+          
+          ) where TEntity : BaseEntity, new()
+        {
+            IQueryable<TEntity> dbSet = _context.Set<TEntity>();
+
+            if (filter != null)
+            {
+                dbSet = dbSet.Where(filter);
+            }
+           
+            return await _mapper.ProjectTo<TDto>(dbSet).FirstOrDefaultAsync();
+
+        }
 
         public async Task<List<T>> ListAsync<T>(
             Expression<Func<T, bool>>? filter = null,

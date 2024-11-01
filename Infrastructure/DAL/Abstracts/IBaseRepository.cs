@@ -22,6 +22,10 @@ namespace Infrastructure.DAL.Abstracts
         #region Select
 
         Task<T> GetByIdAsync<T>(int id) where T : BaseEntity, new();
+        Task<T> GetAsync<T>(Expression<Func<T, bool>>? filter = null) where T : BaseEntity, new();
+        Task<TDto> GetProjectAsync<TEntity, TDto>(Expression<Func<TEntity, bool>>? filter = null) where TEntity : BaseEntity, new();
+
+
         Task<List<T>> ListAsync<T>(
             Expression<Func<T, bool>>? filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null

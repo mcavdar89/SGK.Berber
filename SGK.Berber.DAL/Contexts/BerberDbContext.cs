@@ -17,6 +17,7 @@ namespace SGK.Berber.DAL.Contexts
         DbSet<CalismaSaatleri> CalismaSaatleri { get; set; }
         DbSet<Personel> Personel { get; set; }
         DbSet<Randevu> Randevu { get; set; }
+        DbSet<Kullanici> Kullanici { get; set; }
         //DENEME
 
 
